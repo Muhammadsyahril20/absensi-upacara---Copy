@@ -29,7 +29,7 @@ public function storeInstansi(Request $request)
 }
 
     // Menyimpan Kegiatan Upacara Baru
-    public function store(Request $request)
+   public function store(Request $request)
 {
     $request->validate([
         'nama_kegiatan' => 'required',
@@ -37,19 +37,22 @@ public function storeInstansi(Request $request)
         'banner' => 'image|mimes:jpeg,png,jpg|max:2048', // Batas 2MB
     ]);
 
-    $bannerPath = null;
+    $bannerUrl = null;
+    
+    // Logic upload langsung ditembak ke Cloudinary
     if ($request->hasFile('banner')) {
-        $bannerPath = $request->file('banner')->store('banners', 'public');
+        // Gambar di-upload ke Cloudinary dan kita ambil link URL amannya (Secure Path)
+        $bannerUrl = cloudinary()->upload($request->file('banner')->getRealPath())->getSecurePath();
     }
 
     Event::create([
         'nama_kegiatan' => $request->nama_kegiatan,
         'tanggal' => $request->tanggal,
-        'banner' => $bannerPath, // Simpan path gambarnya
+        'banner' => $bannerUrl, // Yang disimpan ke database sekarang adalah Link URL-nya
         'is_active' => true
     ]);
 
-    return back()->with('success', 'Kegiatan berhasil dibuat dengan banner!');
+    return back()->with('success', 'Kegiatan berhasil dibuat dengan banner dari Cloudinary!');
 }
 
     // Mengubah Status Aktif/Nonaktif Absensi

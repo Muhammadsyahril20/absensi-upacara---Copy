@@ -24,8 +24,7 @@
             
             @if($event->banner)
                 <div class="relative w-full h-40">
-                    <img src="{{ asset('storage/' . $event->banner) }}" alt="Banner" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+<img src="{{ $event->banner }}" alt="Banner Upacara" ...>                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
             @endif
 
