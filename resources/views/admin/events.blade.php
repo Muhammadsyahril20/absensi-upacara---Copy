@@ -11,7 +11,7 @@
 
     <nav class="bg-white border-b-[4px] border-blue-700 px-6 py-3 flex justify-between items-center shadow-sm">
         <div class="flex items-center space-x-4">
-            <img src="{{ asset('img/logo-pelindo.png') }}" alt="Logo Pelindo" class="h-10 w-auto object-contain">
+             <img src="/images/logo-pelindo.png" alt="Logo Pelindo" class="block mx-auto mb-4 h-12 w-auto">
             
             <span class="text-xl font-bold text-slate-700 tracking-wide border-l-2 border-slate-200 pl-4">
                 Attendance System
@@ -173,7 +173,7 @@
                                     <div class="absolute top-0 left-0 w-full h-2 bg-blue-700"></div>
                                     
                                     <div class="mb-3 mt-2 text-center flex flex-col items-center">
-                                        <img src="{{ asset('img/logo-pelindo.png') }}" alt="Logo Pelindo" class="h-7 w-auto object-contain mb-1">
+                                        <img src="/images/logo-pelindo.png" alt="Logo Pelindo" class="block mx-auto mb-4 h-12 w-auto">
                                         <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Absensi Upacara</div>
                                     </div>
                                     
@@ -213,7 +213,7 @@
         <div class="bg-white rounded-2xl shadow-xl border border-slate-200 w-full max-w-md transform transition-transform duration-300 scale-95 overflow-hidden">
             <div class="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
                 <div class="flex items-center space-x-3">
-                    <img src="{{ asset('img/logo-pelindo.png') }}" alt="Logo Pelindo" class="h-8 w-auto object-contain">
+                    <img src="/images/logo-pelindo.png" alt="Logo Pelindo" class="block mx-auto mb-4 h-12 w-auto">
                     <h2 class="text-base font-bold text-slate-800 uppercase tracking-wide border-l-2 border-slate-200 pl-3">
                         Edit Instansi
                     </h2>
