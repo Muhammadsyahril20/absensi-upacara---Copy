@@ -1,5 +1,11 @@
 <?php
 
+// SUNTIK PAKSA URL CLOUDINARY
+putenv('CLOUDINARY_URL=cloudinary://344166586478737:0vdGgntEznTQXnPRMPnT9RVG7X0@dktmxduda');
+$_ENV['CLOUDINARY_URL'] = 'cloudinary://344166586478737:0vdGgntEznTQXnPRMPnT9RVG7X0@dktmxduda';
+$_SERVER['CLOUDINARY_URL'] = 'cloudinary://344166586478737:0vdGgntEznTQXnPRMPnT9RVG7X0@dktmxduda';
+
+// ... (kode kerangka storage /tmp yang sebelumnya biarkan saja di bawah sini) ...
 // 1. CUCI OTAK LARAVEL: Paksa lupakan cache dari tahap "Build" Vercel
 // Kita alihkan semua target cache ke memori /tmp yang diizinkan Vercel
 putenv('APP_SERVICES_CACHE=/tmp/services.php');
