@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Instansi; 
-
+use Illuminate\Support\Facades\Http; 
 class EventController extends Controller
 {
     // Menampilkan Dashboard Utama Admin
@@ -30,30 +30,55 @@ public function storeInstansi(Request $request)
 
     // Menyimpan Kegiatan Upacara Baru
    public function store(Request $request)
-{
-    $request->validate([
-        'nama_kegiatan' => 'required',
-        'tanggal' => 'required',
-        'banner' => 'image|mimes:jpeg,png,jpg|max:2048', // Batas 2MB
-    ]);
+    {
+        $request->validate([
+            'nama_kegiatan' => 'required',
+            'tanggal' => 'required',
+            'banner' => 'image|mimes:jpeg,png,jpg',
+        ]);
 
-    $bannerUrl = null;
-    
-    // Logic upload langsung ditembak ke Cloudinary
-    if ($request->hasFile('banner')) {
-        // Gambar di-upload ke Cloudinary dan kita ambil link URL amannya (Secure Path)
-        $bannerUrl = cloudinary()->upload($request->file('banner')->getRealPath())->getSecurePath();
+        $bannerUrl = null;
+
+        // JURUS TEMBAK LANGSUNG API CLOUDINARY
+        if ($request->hasFile('banner')) {
+            $file = $request->file('banner');
+            
+            // Kredensial rahasia kamu
+            $cloudName = 'dktmxduda';
+            $apiKey = '344166586478737';
+            $apiSecret = '0vdGgntEznTQXnPRMPnT9RVG7X0';
+            $timestamp = time();
+            
+            // Buat kunci keamanan (Signature) wajib dari Cloudinary
+            $signature = sha1('timestamp=' . $timestamp . $apiSecret);
+            
+            // Proses Upload langsung ke server Cloudinary
+            $response = Http::attach(
+                'file', file_get_contents($file->getRealPath()), $file->getClientOriginalName()
+            )->post("https://api.cloudinary.com/v1_1/{$cloudName}/image/upload", [
+                'api_key' => $apiKey,
+                'timestamp' => $timestamp,
+                'signature' => $signature,
+            ]);
+
+            // Ambil link gambarnya jika sukses
+            if ($response->successful()) {
+                $bannerUrl = $response->json()['secure_url'];
+            } else {
+                return back()->with('error', 'Gagal upload gambar ke Cloudinary!');
+            }
+        }
+
+        Event::create([
+            'nama_kegiatan' => $request->nama_kegiatan,
+            'tanggal' => $request->tanggal,
+            'banner' => $bannerUrl,
+            'is_active' => true
+        ]);
+
+        return back()->with('success', 'Kegiatan berhasil dibuat!');
     }
 
-    Event::create([
-        'nama_kegiatan' => $request->nama_kegiatan,
-        'tanggal' => $request->tanggal,
-        'banner' => $bannerUrl, // Yang disimpan ke database sekarang adalah Link URL-nya
-        'is_active' => true
-    ]);
-
-    return back()->with('success', 'Kegiatan berhasil dibuat dengan banner dari Cloudinary!');
-}
 
     // Mengubah Status Aktif/Nonaktif Absensi
     public function toggleStatus($id)
