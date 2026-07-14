@@ -31,7 +31,7 @@
 
             <div class="p-6 sm:p-8">
                 <div class="text-center mb-8">
-                    <img src="{{ asset('img/logo-pelindo.png') }}" alt="Pelindo" class="h-10 mx-auto mb-4 object-contain">
+                    <img src="{{ asset('images/logo-pelindo.png') }}" alt="Logo Pelindo" class="h-8 w-auto">
                     <h2 class="text-xl font-black text-blue-900 uppercase tracking-wide">Absensi Kehadiran</h2>
                     <span class="inline-block mt-2 text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-widest">
                         {{ $event->nama_kegiatan }}
