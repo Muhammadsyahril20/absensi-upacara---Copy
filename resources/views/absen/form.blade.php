@@ -23,9 +23,9 @@
         <div class="glass-panel w-full max-w-md rounded-[2rem] shadow-[0_10px_40px_rgba(0,0,0,0.1)] border border-white overflow-hidden my-auto">
             
             @if($event->banner)
-                <div class="relative w-full h-40">
-<img src="{{ $event->banner }}" alt="Banner Pelindo" class="w-full object-cover ...">
-               <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div class="relative w-full h-40 overflow-hidden">
+                    <img src="{{ $event->banner }}" alt="Banner Pelindo" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                 </div>
             @endif
 

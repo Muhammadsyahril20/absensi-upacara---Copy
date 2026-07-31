@@ -173,7 +173,7 @@
                                     <div class="absolute top-0 left-0 w-full h-2 bg-blue-700"></div>
                                     
                                     <div class="mb-3 mt-2 text-center flex flex-col items-center">
-                                        <img src="/images/logo-pelindo.png" alt="Logo Pelindo" class="block mx-auto mb-4 h-12 w-auto">
+<img src="/images/logo-pelindo.png" alt="Logo Pelindo" class="block mx-auto mb-3 h-9 w-auto">
                                         <div class="text-[9px] font-bold text-slate-500 uppercase tracking-widest">Absensi Upacara</div>
                                     </div>
                                     
